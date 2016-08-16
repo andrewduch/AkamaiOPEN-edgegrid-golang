@@ -7,16 +7,17 @@ import (
 	"crypto/sha256"
 	"encoding/base64"
 	"fmt"
-	"github.com/go-ini/ini"
-	log "github.com/sirupsen/logrus"
-	"github.com/tuvistavie/securerandom"
-	"gopkg.in/mattes/go-expand-tilde.v1"
 	"io/ioutil"
 	"net/http"
 	"sort"
 	"strings"
 	"time"
 	"unicode"
+
+	log "github.com/Sirupsen/logrus"
+	"github.com/go-ini/ini"
+	"github.com/tuvistavie/securerandom"
+	"gopkg.in/mattes/go-expand-tilde.v1"
 )
 
 // Config struct provides all the necessary fields to
