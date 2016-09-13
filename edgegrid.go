@@ -137,8 +137,7 @@ func (c *Config) createContentHash(req *http.Request) string {
 	if req.Method == "POST" && len(preparedBody) > 0 {
 		//log.Debugf("Signing content: %s", preparedBody)
 		if len(preparedBody) > c.MaxBody {
-			//log.Debugf("Data length %d is larger than maximum %d",
-				len(preparedBody), c.MaxBody)
+			//log.Debugf("Data length %d is larger than maximum %d",len(preparedBody), c.MaxBody)
 
 			preparedBody = preparedBody[0:c.MaxBody]
 			//log.Debugf("Data truncated to %d for computing the hash", len(preparedBody))
