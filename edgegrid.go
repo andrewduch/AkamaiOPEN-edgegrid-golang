@@ -133,19 +133,19 @@ func (c *Config) createContentHash(req *http.Request) string {
 		preparedBody = string(bodyBytes)
 	}
 
-	log.Debugf("Body is %s", preparedBody)
+	//log.Debugf("Body is %s", preparedBody)
 	if req.Method == "POST" && len(preparedBody) > 0 {
-		log.Debugf("Signing content: %s", preparedBody)
+		//log.Debugf("Signing content: %s", preparedBody)
 		if len(preparedBody) > c.MaxBody {
-			log.Debugf("Data length %d is larger than maximum %d",
+			//log.Debugf("Data length %d is larger than maximum %d",
 				len(preparedBody), c.MaxBody)
 
 			preparedBody = preparedBody[0:c.MaxBody]
-			log.Debugf("Data truncated to %d for computing the hash", len(preparedBody))
+			//log.Debugf("Data truncated to %d for computing the hash", len(preparedBody))
 		}
 		contentHash = createHash(preparedBody)
 	}
-	log.Debugf("Content hash is '%s'", contentHash)
+	//log.Debugf("Content hash is '%s'", contentHash)
 	return contentHash
 }
 
@@ -163,7 +163,7 @@ func (c *Config) signingData(req *http.Request, authHeader string) string {
 		c.createContentHash(req),
 		authHeader,
 	}
-	log.Debugf("Data to sign %s", strings.Join(dataSign, "\t"))
+	//log.Debugf("Data to sign %s", strings.Join(dataSign, "\t"))
 	return strings.Join(dataSign, "\t")
 }
 
@@ -182,11 +182,11 @@ func (c *Config) createAuthHeader(req *http.Request, timestamp string, nonce str
 		timestamp,
 		nonce,
 	)
-	log.Debugf("Unsigned authorization header: '%s'", authHeader)
+	//log.Debugf("Unsigned authorization header: '%s'", authHeader)
 
 	signedAuthHeader := fmt.Sprintf("%ssignature=%s", authHeader, c.signingRequest(req, authHeader, timestamp))
 
-	log.Debugf("Signed authorization header: '%s'", signedAuthHeader)
+	//log.Debugf("Signed authorization header: '%s'", signedAuthHeader)
 	return signedAuthHeader
 }
 
